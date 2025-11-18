@@ -22,18 +22,18 @@ const GLuint  NumVertices = 6;
 //
 
 void initOpenGL45(void) {
-    // 1. ¶¨Òå CPU ¶Ë¶¥µãÊı¾İ£¨»¹Ã»µ½ GPU£©
+    // 1. å®šä¹‰ CPU ç«¯é¡¶ç‚¹æ•°æ®ï¼ˆè¿˜æ²¡åˆ° GPUï¼‰
     GLfloat  vertices[NumVertices][2] = {
         { -0.90f, -0.90f }, {  0.85f, -0.90f }, { -0.90f,  0.85f },  // Triangle 1
         {  0.90f, -0.85f }, {  0.90f,  0.90f }, { -0.85f,  0.90f }   // Triangle 2
     };
 
-    // ·ÖÅäÁË¶¥µãÊı×é¶ÔÏó(vertex-array object)
+    // åˆ†é…äº†é¡¶ç‚¹æ•°ç»„å¯¹è±¡(vertex-array object)
     glCreateVertexArrays(NumVAOs, VAOs);
 
-    // ´´½¨¶¥µã»º´æ¶ÔÏó
+    // åˆ›å»ºé¡¶ç‚¹ç¼“å­˜å¯¹è±¡
     glCreateBuffers(NumBuffers, Buffers);
-    // ·ÖÅä»º´æ¶ÔÏóµÄ¿Õ¼ä²¢°Ñ¶¥µãÊı¾İ´Ó¶ÔÏó´«Êäµ½»º´æ¶ÔÏóµ±ÖĞ
+    // åˆ†é…ç¼“å­˜å¯¹è±¡çš„ç©ºé—´å¹¶æŠŠé¡¶ç‚¹æ•°æ®ä»å¯¹è±¡ä¼ è¾“åˆ°ç¼“å­˜å¯¹è±¡å½“ä¸­
     glNamedBufferStorage(Buffers[ArrayBuffer], sizeof(vertices), vertices, 0);
 
     ShaderInfo shaders[] = { {GL_VERTEX_SHADER, "media/shaders/triangles/triangles.vert"},
@@ -43,13 +43,13 @@ void initOpenGL45(void) {
     GLuint program = LoadShaders(shaders);
     glUseProgram(program);
 
-    // ´´½¨²¢ÇÒ°ó¶¨ÁËÒ»¸ö¶¥µãÊı×é¶ÔÏó
+    // åˆ›å»ºå¹¶ä¸”ç»‘å®šäº†ä¸€ä¸ªé¡¶ç‚¹æ•°ç»„å¯¹è±¡
     glBindVertexArray(VAOs[Triangles]);
-    // Ö¸¶¨µ±Ç°¼¤»îµÄ»º´æ¶ÔÏó
+    // æŒ‡å®šå½“å‰æ¿€æ´»çš„ç¼“å­˜å¯¹è±¡
     glBindBuffer(GL_ARRAY_BUFFER, Buffers[ArrayBuffer]);
     glVertexAttribPointer(vPosition, 2, GL_FLOAT, GL_FALSE, 0,
         BUFFER_OFFSET(0));
-    // ÆôÓÃ¶¥µãÊôĞÔÊı×é
+    // å¯ç”¨é¡¶ç‚¹å±æ€§æ•°ç»„
     glEnableVertexAttribArray(vPosition);
 }
 
